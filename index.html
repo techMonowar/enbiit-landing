@@ -3,612 +3,448 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monofluence - The Future of Creator Economy</title>
     
-    <title>Enbiit | Advanced Automation Operating System</title>
-    <meta name="description" content="Automate your business growth with Enbiit Console. The all-in-one Mono2Flow engine for CRM, Social Media, Email Marketing, and Ad Management. No code required.">
-    <meta name="keywords" content="automation, no-code, crm, email marketing, social media management, workflow builder, enbiit, business os">
-    <meta name="author" content="Enbiit Technologies">
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://enbiit.com/">
-    <meta property="og:title" content="Enbiit - Automate Your Empire">
-    <meta property="og:description" content="The advanced automation console for modern businesses. Scale with AI-driven workflows.">
-    <meta property="og:image" content="https://console.enbiit.com/og-image.png">
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://enbiit.com/">
-    <meta property="twitter:title" content="Enbiit - Automate Your Empire">
-    <meta property="twitter:description" content="The advanced automation console for modern businesses. Scale with AI-driven workflows.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom Animations */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.1); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 8s ease-in-out infinite;
+        }
+
+        /* Fade In Up Utility */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Grainy Noise Background */
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        /* Glass Utility */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
                     colors: {
-                        background: '#050505',
-                        surface: '#0a0a0a',
-                        border: '#1e293b' // slate-800
+                        slate: {
+                            950: '#020617',
+                        }
                     }
                 }
             }
         }
     </script>
-
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <style>
-        body {
-            background-color: #050505;
-            color: #ffffff;
-        }
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0a0a; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569; 
-        }
-        .text-gradient {
-            background: linear-gradient(to right, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .glass-nav {
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(12px);
-        }
-        .grid-bg {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-        }
-    </style>
 </head>
-<body class="antialiased selection:bg-blue-500/30">
+<body class="bg-slate-950 text-slate-200 selection:bg-indigo-500/30 overflow-x-hidden">
 
-    <nav class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2 group">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-violet-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/20 group-hover:scale-105 transition-transform">
-                    <i data-lucide="zap" class="w-6 h-6 text-white fill-white"></i>
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="h-8 w-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                    <i data-lucide="zap" class="h-5 w-5 text-white fill-white"></i>
                 </div>
-                <span class="text-xl font-bold text-white tracking-tight">
-                    Enbiit <span class="text-slate-500 font-normal">Console</span>
-                </span>
-            </a>
-
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#features" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Features</a>
-                <a href="#solutions" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Solutions</a>
-                <a href="#pricing" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Pricing</a>
-                
-                <div class="flex items-center gap-4 ml-4">
-                    <a href="https://console.enbiit.com/login" class="text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-2 rounded-md transition-all">
-                        Sign In
-                    </a>
-                    <a href="https://console.enbiit.com/register" class="bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-full px-6 py-2.5 shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all hover:scale-105">
-                        Get Started
-                    </a>
-                </div>
+                <span class="text-xl font-bold text-white tracking-tight">Monofluence</span>
             </div>
 
-            <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#features" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Features</a>
+                <a href="#creators" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">For Creators</a>
+                <a href="#brands" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">For Brands</a>
+                <a href="#pricing" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Pricing</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="#" class="hidden md:block text-sm font-medium text-white hover:text-indigo-300 transition-colors">Sign In</a>
+                <a href="#" class="hidden md:flex bg-white text-slate-900 hover:bg-slate-200 transition-colors font-semibold rounded-full px-6 py-2.5 text-sm">
+                    Get Started
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-slate-800 p-4 space-y-4 shadow-2xl">
-            <a href="#features" class="block text-slate-400 hover:text-white py-2">Features</a>
-            <a href="#solutions" class="block text-slate-400 hover:text-white py-2">Solutions</a>
-            <a href="#pricing" class="block text-slate-400 hover:text-white py-2">Pricing</a>
-            <a href="https://console.enbiit.com/login" class="block w-full text-center border border-slate-700 text-slate-300 py-2 rounded-lg">Login</a>
-            <a href="https://console.enbiit.com/register" class="block w-full text-center bg-blue-600 text-white py-2 rounded-lg font-bold">Get Started</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-950 border-b border-white/10 absolute w-full top-full left-0">
+            <div class="flex flex-col p-6 space-y-4">
+                <a href="#features" class="text-lg font-medium text-slate-300">Features</a>
+                <a href="#creators" class="text-lg font-medium text-slate-300">For Creators</a>
+                <a href="#brands" class="text-lg font-medium text-slate-300">For Brands</a>
+                <div class="h-px bg-white/10 my-2"></div>
+                <a href="#" class="text-lg font-medium text-white">Sign In</a>
+                <a href="#" class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg text-center">Get Started</a>
+            </div>
         </div>
     </nav>
 
-    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none opacity-50"></div>
-
-        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/30 border border-blue-800 text-blue-400 text-xs font-medium mb-8">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                </span>
-                v26.01 Mono2Flow Engine Live
-            </div>
-
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-                Automate Your Growth <br />
-                <span class="text-gradient">Without Writing Code</span>
-            </h1>
-
-            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Enbiit Console is the all-in-one operating system for your business. 
-                Connect social media, automate emails, manage leads, and run ads from a single visual dashboard.
-            </p>
-
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="https://console.enbiit.com" class="h-12 px-8 rounded-full bg-white text-black hover:bg-slate-200 font-bold text-base shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all hover:scale-105 flex items-center justify-center gap-2">
-                    Launch Console <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-                <a href="#features" class="h-12 px-8 rounded-full border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-slate-600 font-medium flex items-center justify-center gap-2 transition-colors">
-                    <i data-lucide="play" class="w-4 h-4 fill-current"></i> Explore Modules
-                </a>
-            </div>
-
-            <div class="mt-20 relative rounded-xl border border-slate-800 bg-surface shadow-2xl overflow-hidden mx-auto max-w-5xl group">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10"></div>
-                <img src="https://placehold.co/1200x650/0a0a0a/333333/png?text=Enbiit+Mono2Flow+Builder+Preview&font=montserrat" alt="Automation Builder" class="w-full opacity-90 group-hover:scale-105 transition-transform duration-1000 ease-out">
-            </div>
-        </div>
-    </section>
-
-    <section class="py-12 border-y border-slate-900 bg-black/50 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
-            <p class="text-sm font-bold text-slate-500 uppercase tracking-widest whitespace-nowrap">
-                Powering integrations with
-            </p>
-            <div class="flex flex-wrap justify-center gap-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500 w-full md:w-auto">
-                <span class="text-xl font-bold text-slate-300 flex items-center gap-2"><i data-lucide="facebook" class="w-5 h-5"></i> Meta</span>
-                <span class="text-xl font-bold text-slate-300 flex items-center gap-2"><i data-lucide="chrome" class="w-5 h-5"></i> Google</span>
-                <span class="text-xl font-bold text-slate-300 flex items-center gap-2"><i data-lucide="cpu" class="w-5 h-5"></i> OpenAI</span>
-                <span class="text-xl font-bold text-slate-300 flex items-center gap-2"><i data-lucide="shopping-bag" class="w-5 h-5"></i> Shopify</span>
-                <span class="text-xl font-bold text-slate-300 flex items-center gap-2"><i data-lucide="hash" class="w-5 h-5"></i> Slack</span>
-                <span class="text-xl font-bold text-slate-300 flex items-center gap-2"><i data-lucide="smartphone" class="w-5 h-5"></i> WhatsApp</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="py-24 bg-[#0a0a0a]">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-blue-500 font-semibold text-sm uppercase tracking-wider">Features</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Everything You Need</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">
-                    Stop switching between 10 different tabs. Enbiit consolidates your entire growth stack into one powerful operating system.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <div class="group p-6 rounded-2xl bg-[#111] border border-slate-800 hover:border-blue-500/50 hover:bg-[#151515] transition-all duration-300 cursor-default">
-                    <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="workflow" class="w-6 h-6 text-blue-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Mono2Flow Automation</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Visual drag-and-drop builder to create complex logic flows between apps with If/Else logic.</p>
-                </div>
-
-                <div class="group p-6 rounded-2xl bg-[#111] border border-slate-800 hover:border-pink-500/50 hover:bg-[#151515] transition-all duration-300 cursor-default">
-                    <div class="w-12 h-12 rounded-lg bg-pink-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="users" class="w-6 h-6 text-pink-500"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Social Suite</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Manage Instagram DMs, WhatsApp messages, and Facebook posts in one unified inbox.</p>
-                </div>
-
-                <div class="group p-6 rounded-2xl bg-[#111] border border-slate-800 hover:border-orange-500/50 hover:bg-[#151515] transition-all duration-300 cursor-default">
-                    <div class="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="bar-chart-3" class="w-6 h-6 text-orange-500"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Ad Manager</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Run high-converting campaigns on Meta & Google directly from the console with AI optimization.</p>
-                </div>
-
-                <div class="group p-6 rounded-2xl bg-[#111] border border-slate-800 hover:border-green-500/50 hover:bg-[#151515] transition-all duration-300 cursor-default">
-                    <div class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="shield-check" class="w-6 h-6 text-green-500"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Smart CRM</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Capture leads automatically from automations and organize them with custom tags and lists.</p>
-                </div>
-
-                <div class="group p-6 rounded-2xl bg-[#111] border border-slate-800 hover:border-purple-500/50 hover:bg-[#151515] transition-all duration-300 cursor-default">
-                    <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="mail" class="w-6 h-6 text-purple-500"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Email Engine</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Full SMTP/IMAP integration for mass newsletters and specific transactional emails.</p>
-                </div>
-
-                <div class="group p-6 rounded-2xl bg-[#111] border border-slate-800 hover:border-cyan-500/50 hover:bg-[#151515] transition-all duration-300 cursor-default">
-                    <div class="w-12 h-12 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="globe" class="w-6 h-6 text-cyan-500"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Webhooks & API</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Connect any external tool using our advanced webhook receiver with custom headers.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="solutions" class="py-24 bg-surface border-t border-slate-900 grid-bg">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                
-                <div>
-                    <span class="text-blue-500 font-semibold text-sm uppercase tracking-wider">Solutions</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-6">Built for every growth stage</h2>
-                    <p class="text-slate-400 text-lg mb-8 leading-relaxed">
-                        Whether you are a solo founder or a scaling agency, Enbiit adapts to your workflow. We handle the infrastructure so you can focus on strategy.
-                    </p>
-
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center flex-shrink-0 border border-blue-800">
-                                <i data-lucide="briefcase" class="w-5 h-5 text-blue-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-bold text-lg">For Agencies</h4>
-                                <p class="text-slate-400 text-sm">Manage multiple client accounts from a single dashboard. White-label reports included.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center flex-shrink-0 border border-purple-800">
-                                <i data-lucide="shopping-cart" class="w-5 h-5 text-purple-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-bold text-lg">For E-commerce</h4>
-                                <p class="text-slate-400 text-sm">Automate abandoned cart recovery via WhatsApp and Email simultaneously.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-full bg-green-900/30 flex items-center justify-center flex-shrink-0 border border-green-800">
-                                <i data-lucide="headset" class="w-5 h-5 text-green-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-bold text-lg">For Support Teams</h4>
-                                <p class="text-slate-400 text-sm">Use AI agents to answer common queries 24/7 across Instagram and Facebook.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative">
-                    <div class="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-2xl opacity-20"></div>
-                    <div class="relative bg-[#0c0c0c] border border-slate-800 rounded-2xl p-8 shadow-2xl">
-                        <div class="space-y-4 font-mono text-sm">
-                            <div class="flex items-center gap-2 text-slate-500 border-b border-slate-800 pb-2 mb-4">
-                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                                <span class="ml-2">automation-logic.js</span>
-                            </div>
-                            <div>
-                                <span class="text-purple-400">if</span> (<span class="text-blue-400">trigger</span>.type === <span class="text-green-400">'lead_form'</span>) {
-                            </div>
-                            <div class="pl-4">
-                                <span class="text-yellow-400">CRM</span>.createContact(<span class="text-blue-400">trigger</span>.data);
-                            </div>
-                            <div class="pl-4">
-                                <span class="text-purple-400">await</span> <span class="text-yellow-400">Email</span>.send({
-                            </div>
-                            <div class="pl-8">
-                                to: <span class="text-blue-400">trigger</span>.email,
-                            </div>
-                            <div class="pl-8">
-                                template: <span class="text-green-400">'welcome_sequence'</span>
-                            </div>
-                            <div class="pl-4">
-                                });
-                            </div>
-                            <div>}</div>
-                            <div class="mt-4 p-3 bg-blue-900/20 border border-blue-900/50 rounded text-blue-300">
-                                <i data-lucide="check-circle-2" class="inline w-4 h-4 mr-2"></i> Logic executed visually in builder
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-[#050505]">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <span class="text-blue-500 font-semibold text-sm uppercase tracking-wider">Workflow</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-16">From Idea to Automation</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-                <div class="hidden md:block absolute top-12 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-blue-900 via-purple-900 to-blue-900 -z-10"></div>
-
-                <div class="flex flex-col items-center">
-                    <div class="w-24 h-24 bg-[#111] border border-slate-800 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-                        <span class="text-4xl font-bold text-blue-500">1</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Connect</h3>
-                    <p class="text-slate-400 text-sm max-w-xs">Link your accounts (Meta, Google, Slack) securely in one click.</p>
-                </div>
-
-                <div class="flex flex-col items-center">
-                    <div class="w-24 h-24 bg-[#111] border border-slate-800 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-                        <span class="text-4xl font-bold text-purple-500">2</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Build</h3>
-                    <p class="text-slate-400 text-sm max-w-xs">Drag triggers and actions onto the canvas. Use AI to generate copy.</p>
-                </div>
-
-                <div class="flex flex-col items-center">
-                    <div class="w-24 h-24 bg-[#111] border border-slate-800 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-                        <span class="text-4xl font-bold text-green-500">3</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Launch</h3>
-                    <p class="text-slate-400 text-sm max-w-xs">Activate your workflow. Monitor logs and performance in real-time.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-surface border-t border-slate-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-white text-center mb-12">Trusted by builders</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="p-6 bg-[#050505] border border-slate-800 rounded-xl">
-                    <div class="flex items-center gap-1 text-yellow-500 mb-4">
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Enbiit replaced Zapier and Mailchimp for us. Having the CRM integrated directly with the automation builder is a game changer."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-slate-800"></div>
-                        <div>
-                            <p class="text-white font-bold text-sm">Alex R.</p>
-                            <p class="text-slate-500 text-xs">SaaS Founder</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-6 bg-[#050505] border border-slate-800 rounded-xl">
-                    <div class="flex items-center gap-1 text-yellow-500 mb-4">
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"The ability to visualize Facebook Ad leads and instantly send them a WhatsApp message increased our conversion by 40%."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-slate-800"></div>
-                        <div>
-                            <p class="text-white font-bold text-sm">Sarah J.</p>
-                            <p class="text-slate-500 text-xs">Marketing Director</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-6 bg-[#050505] border border-slate-800 rounded-xl">
-                    <div class="flex items-center gap-1 text-yellow-500 mb-4">
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Finally, a no-code tool that doesn't feel like a toy. The logic nodes (If/Else) are extremely powerful for complex workflows."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-slate-800"></div>
-                        <div>
-                            <p class="text-white font-bold text-sm">David K.</p>
-                            <p class="text-slate-500 text-xs">Agency Owner</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pricing" class="py-24 bg-[#0a0a0a]">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Simple, Transparent Pricing</h2>
-                <p class="text-slate-400">Start for free, upgrade as you scale.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                
-                <div class="p-8 rounded-2xl border border-slate-800 bg-[#111] hover:border-slate-700 transition-all">
-                    <h3 class="text-xl font-bold text-white">Starter</h3>
-                    <div class="my-4"><span class="text-4xl font-bold text-white">$0</span><span class="text-slate-500">/mo</span></div>
-                    <p class="text-sm text-slate-400 mb-6">Perfect for testing ideas.</p>
-                    <a href="https://console.enbiit.com/register" class="block w-full py-3 rounded-lg border border-slate-700 text-center text-white hover:bg-slate-800 transition-colors">Start Free</a>
-                    <ul class="mt-8 space-y-3 text-sm text-slate-300">
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 100 Automations / mo</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 3 Active Workflows</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Basic Integrations</li>
-                    </ul>
-                </div>
-
-                <div class="p-8 rounded-2xl border border-blue-600 bg-blue-900/10 relative transform md:-translate-y-4 shadow-2xl shadow-blue-900/20">
-                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAR</div>
-                    <h3 class="text-xl font-bold text-white">Pro</h3>
-                    <div class="my-4"><span class="text-4xl font-bold text-white">$29</span><span class="text-slate-500">/mo</span></div>
-                    <p class="text-sm text-blue-200 mb-6">For growing businesses.</p>
-                    <a href="https://console.enbiit.com/register" class="block w-full py-3 rounded-lg bg-blue-600 text-center text-white hover:bg-blue-500 transition-colors font-bold shadow-lg shadow-blue-900/50">Get Pro</a>
-                    <ul class="mt-8 space-y-3 text-sm text-slate-300">
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400"></i> 5,000 Automations / mo</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400"></i> Unlimited Workflows</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400"></i> Advanced Logic & Webhooks</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400"></i> Email & Priority Support</li>
-                    </ul>
-                </div>
-
-                <div class="p-8 rounded-2xl border border-slate-800 bg-[#111] hover:border-slate-700 transition-all">
-                    <h3 class="text-xl font-bold text-white">Business</h3>
-                    <div class="my-4"><span class="text-4xl font-bold text-white">$99</span><span class="text-slate-500">/mo</span></div>
-                    <p class="text-sm text-slate-400 mb-6">For high volume needs.</p>
-                    <a href="https://console.enbiit.com/register" class="block w-full py-3 rounded-lg border border-slate-700 text-center text-white hover:bg-slate-800 transition-colors">Contact Sales</a>
-                    <ul class="mt-8 space-y-3 text-sm text-slate-300">
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 50,000+ Automations</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Dedicated Server Resources</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Custom API Integrations</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Dedicated Account Manager</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-surface border-t border-slate-900">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-white text-center mb-12">Frequently Asked Questions</h2>
-            
-            <div class="space-y-4">
-                <details class="group bg-[#111] p-4 rounded-lg border border-slate-800 cursor-pointer">
-                    <summary class="flex justify-between items-center font-medium list-none text-slate-200 group-hover:text-white transition-colors">
-                        <span>Do I need coding skills?</span>
-                        <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5"></i></span>
-                    </summary>
-                    <div class="text-slate-400 mt-4 text-sm leading-relaxed animate-in slide-in-from-top-2">
-                        Absolutely not. Enbiit is designed as a No-Code platform. You use a visual builder to drag and drop elements. However, we do offer advanced features like Webhooks and JSON editing for developers who want more control.
-                    </div>
-                </details>
-
-                <details class="group bg-[#111] p-4 rounded-lg border border-slate-800 cursor-pointer">
-                    <summary class="flex justify-between items-center font-medium list-none text-slate-200 group-hover:text-white transition-colors">
-                        <span>Can I connect multiple Instagram accounts?</span>
-                        <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5"></i></span>
-                    </summary>
-                    <div class="text-slate-400 mt-4 text-sm leading-relaxed animate-in slide-in-from-top-2">
-                        Yes! On the Pro and Business plans, you can connect multiple social media profiles and manage them from a single dashboard.
-                    </div>
-                </details>
-
-                <details class="group bg-[#111] p-4 rounded-lg border border-slate-800 cursor-pointer">
-                    <summary class="flex justify-between items-center font-medium list-none text-slate-200 group-hover:text-white transition-colors">
-                        <span>Is my data secure?</span>
-                        <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5"></i></span>
-                    </summary>
-                    <div class="text-slate-400 mt-4 text-sm leading-relaxed animate-in slide-in-from-top-2">
-                        Security is our top priority. We use industry-standard encryption for credentials (API Keys, Tokens) and do not store your customer data longer than necessary for processing. We are compliant with GDPR basics.
-                    </div>
-                </details>
-
-                <details class="group bg-[#111] p-4 rounded-lg border border-slate-800 cursor-pointer">
-                    <summary class="flex justify-between items-center font-medium list-none text-slate-200 group-hover:text-white transition-colors">
-                        <span>What happens if I hit my automation limit?</span>
-                        <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5"></i></span>
-                    </summary>
-                    <div class="text-slate-400 mt-4 text-sm leading-relaxed animate-in slide-in-from-top-2">
-                        Your workflows will pause, and we will notify you immediately. You can choose to upgrade your plan or wait for the next billing cycle. We never charge overage fees without your permission.
-                    </div>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-32 relative overflow-hidden bg-[#050505]">
-        <div class="absolute inset-0 bg-gradient-to-b from-blue-900/10 to-[#050505]"></div>
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-                Ready to automate your empire?
-            </h2>
-            <p class="text-slate-400 text-lg mb-10">
-                Join thousands of businesses using Enbiit Console to save time and increase revenue.
-            </p>
-            <a href="https://console.enbiit.com/register" class="inline-block h-14 px-10 rounded-full bg-white text-black hover:bg-slate-200 text-lg font-bold flex items-center justify-center w-fit mx-auto transition-transform hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.2)]">
-                Start Building for Free
-            </a>
-        </div>
-    </section>
-
-    <footer class="bg-[#0a0a0a] border-t border-slate-900 pt-20 pb-10">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
-            <div class="col-span-1 md:col-span-2">
-                <div class="flex items-center gap-2 mb-4">
-                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                        <i data-lucide="zap" class="w-5 h-5 text-white fill-white"></i>
-                    </div>
-                    <span class="text-xl font-bold text-white">Enbiit</span>
-                </div>
-                <p class="text-slate-500 text-sm max-w-sm mb-6">
-                    The advanced automation console for modern businesses. 
-                    Scale your operations with AI-driven workflows.
-                </p>
-                <div class="flex gap-4">
-                    <div class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:border-blue-500 cursor-pointer transition-colors">
-                        <i data-lucide="twitter" class="w-4 h-4 text-slate-400"></i>
-                    </div>
-                    <div class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:border-blue-500 cursor-pointer transition-colors">
-                        <i data-lucide="linkedin" class="w-4 h-4 text-slate-400"></i>
-                    </div>
-                    <div class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:border-blue-500 cursor-pointer transition-colors">
-                        <i data-lucide="github" class="w-4 h-4 text-slate-400"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <h4 class="text-white font-bold mb-4">Product</h4>
-                <ul class="space-y-2 text-sm text-slate-400">
-                    <li><a href="#" class="hover:text-blue-400 transition-colors">Mono2Flow</a></li>
-                    <li><a href="#" class="hover:text-blue-400 transition-colors">Integrations</a></li>
-                    <li><a href="#pricing" class="hover:text-blue-400 transition-colors">Pricing</a></li>
-                    <li><a href="#" class="hover:text-blue-400 transition-colors">Changelog</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white font-bold mb-4">Legal</h4>
-                <ul class="space-y-2 text-sm text-slate-400">
-                    <li><a href="#" class="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-blue-400 transition-colors">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-blue-400 transition-colors">Security</a></li>
-                </ul>
-            </div>
-        </div>
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-slate-950">
         
-        <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-xs text-slate-600">
-                &copy; <script>document.write(new Date().getFullYear())</script> Enbiit Technologies. All rights reserved.
-            </p>
-            <p class="text-xs text-slate-600 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                All Systems Operational
-            </p>
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[120px]"></div>
+            <div class="absolute inset-0 bg-noise"></div>
+        </div>
+
+        <div class="container px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="max-w-2xl fade-in-up" id="hero-text">
+                <div class="inline-flex items-center gap-2 mb-6 border border-indigo-500/30 text-indigo-300 bg-indigo-500/10 px-4 py-1.5 rounded-full text-sm backdrop-blur-sm">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                    </span>
+                    🚀 The Future of Creator Economy
+                </div>
+                
+                <h1 class="text-5xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+                    Connect. Create. <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+                        Monetize.
+                    </span>
+                </h1>
+                
+                <p class="text-lg text-slate-400 mb-8 leading-relaxed max-w-lg">
+                    The unified operating system for Influencer Marketing. Brands hire top talent, Creators get paid instantly. All in one secure workspace.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="h-14 px-8 text-base font-semibold rounded-full bg-white text-slate-950 hover:bg-slate-200 transition-all shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]">
+                        Start as a Brand
+                    </button>
+                    <button class="h-14 px-8 text-base font-semibold rounded-full border border-slate-700 text-white hover:bg-slate-800 transition-all bg-slate-900/50 backdrop-blur-md">
+                        Join as Creator
+                    </button>
+                </div>
+
+                <div class="mt-10 flex items-center gap-4 text-sm text-slate-500">
+                    <div class="flex -space-x-2">
+                        <div class="w-8 h-8 rounded-full border-2 border-slate-950 bg-slate-800 flex items-center justify-center text-[10px] text-white overflow-hidden"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=1" alt="user"></div>
+                        <div class="w-8 h-8 rounded-full border-2 border-slate-950 bg-slate-800 flex items-center justify-center text-[10px] text-white overflow-hidden"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=2" alt="user"></div>
+                        <div class="w-8 h-8 rounded-full border-2 border-slate-950 bg-slate-800 flex items-center justify-center text-[10px] text-white overflow-hidden"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=3" alt="user"></div>
+                        <div class="w-8 h-8 rounded-full border-2 border-slate-950 bg-slate-800 flex items-center justify-center text-[10px] text-white overflow-hidden"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=4" alt="user"></div>
+                    </div>
+                    <p>Trusted by 10,000+ creators</p>
+                </div>
+            </div>
+
+            <div class="relative hidden lg:block h-[600px] perspective-1000">
+                <div id="card-1" class="absolute top-10 right-10 z-20 glass-card rounded-2xl p-4 w-72 shadow-2xl shadow-indigo-500/10">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-semibold text-slate-400 uppercase">Revenue</span>
+                        <span class="bg-green-500/20 text-green-400 text-[10px] px-2 py-0.5 rounded font-bold">+24%</span>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-2">$12,450</div>
+                    <div class="h-16 flex items-end gap-1">
+                        <div class="flex-1 bg-indigo-500/80 rounded-t-sm" style="height: 40%"></div>
+                        <div class="flex-1 bg-indigo-500/80 rounded-t-sm" style="height: 70%"></div>
+                        <div class="flex-1 bg-indigo-500/80 rounded-t-sm" style="height: 45%"></div>
+                        <div class="flex-1 bg-indigo-500/80 rounded-t-sm" style="height: 90%"></div>
+                        <div class="flex-1 bg-indigo-500/80 rounded-t-sm" style="height: 60%"></div>
+                        <div class="flex-1 bg-indigo-500/80 rounded-t-sm" style="height: 80%"></div>
+                    </div>
+                </div>
+
+                <div id="card-2" class="absolute bottom-20 left-10 z-10 glass-card rounded-2xl p-0 overflow-hidden w-80 shadow-2xl">
+                    <div class="h-24 bg-gradient-to-r from-pink-500 to-rose-500"></div>
+                    <div class="p-5 pt-0 relative">
+                        <div class="w-16 h-16 rounded-full border-4 border-slate-900 bg-white absolute -top-8 left-5 overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Creator">
+                        </div>
+                        <div class="mt-10">
+                            <h3 class="text-white font-bold">Sarah Jenkins</h3>
+                            <p class="text-slate-400 text-sm">@sarahj_tech</p>
+                            <div class="mt-4 flex gap-2">
+                                <span class="bg-white/10 text-white px-2 py-1 rounded text-xs">Tech</span>
+                                <span class="bg-white/10 text-white px-2 py-1 rounded text-xs">Lifestyle</span>
+                            </div>
+                            <button class="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg font-medium transition-colors">Hire Sarah</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full blur-[100px] opacity-20 animate-pulse-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="py-10 bg-slate-950 border-y border-white/5 overflow-hidden">
+        <div class="container mx-auto px-6 mb-6 text-center">
+            <p class="text-sm font-medium text-slate-500 uppercase tracking-widest">Trusted by innovative teams</p>
+        </div>
+        <div class="relative flex overflow-x-hidden">
+            <div class="flex gap-16 py-4 animate-marquee whitespace-nowrap">
+                <span class="text-2xl font-bold text-slate-700 uppercase">Acme Corp</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Nebula</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Vertex</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Orbit</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Spherule</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Galactic</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Acme Corp</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Nebula</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Vertex</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Orbit</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Spherule</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Galactic</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Acme Corp</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Nebula</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Vertex</span>
+                <span class="text-2xl font-bold text-slate-700 uppercase">Orbit</span>
+            </div>
+        </div>
+    </div>
+
+    <section id="features" class="py-32 bg-slate-950 relative z-20">
+        <div class="container px-6 mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-20 fade-in-up">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Everything you need to scale.</h2>
+                <p class="text-lg text-slate-400">
+                    Monofluence replaces your spreadsheets, DMs, and payment gateways with a single, powerful operating system.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
+                
+                <div class="glass-card md:col-span-2 relative overflow-hidden group rounded-2xl">
+                    <div class="p-8 relative z-10 h-full flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4 text-blue-400">
+                                <i data-lucide="globe" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Global Talent Search</h3>
+                            <p class="text-slate-400 max-w-sm">Use AI filters to find the perfect creator from our database of 10M+ profiles across Instagram, TikTok, and YouTube.</p>
+                        </div>
+                        <div class="flex gap-2 mt-8">
+                            <span class="border border-white/10 text-slate-300 px-3 py-1 rounded-full text-xs">Tech</span>
+                            <span class="border border-white/10 text-slate-300 px-3 py-1 rounded-full text-xs">Fashion</span>
+                            <span class="border border-white/10 text-slate-300 px-3 py-1 rounded-full text-xs">Crypto</span>
+                            <span class="border border-white/10 text-slate-300 px-3 py-1 rounded-full text-xs">Fitness</span>
+                        </div>
+                    </div>
+                    <div class="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-blue-500/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+
+                <div class="glass-card relative overflow-hidden group rounded-2xl">
+                    <div class="p-8 h-full">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4 text-green-400">
+                            <i data-lucide="shield-check" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Escrow Payments</h3>
+                        <p class="text-slate-400 text-sm">Funds are held safely until deliverables are approved. No scams, no late payments.</p>
+                    </div>
+                    <div class="absolute -right-4 -bottom-4 w-32 h-32 bg-green-500/20 rounded-full blur-2xl group-hover:bg-green-500/30 transition-all"></div>
+                </div>
+
+                <div class="glass-card relative overflow-hidden group rounded-2xl">
+                    <div class="p-8 h-full">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4 text-purple-400">
+                            <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Real-time ROI</h3>
+                        <p class="text-slate-400 text-sm">Track views, clicks, and conversions live from your dashboard.</p>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 h-16 flex items-end px-8 pb-0 gap-1 opacity-50">
+                        <div class="flex-1 bg-purple-500 rounded-t-sm" style="height: 40%"></div>
+                        <div class="flex-1 bg-purple-500 rounded-t-sm" style="height: 60%"></div>
+                        <div class="flex-1 bg-purple-500 rounded-t-sm" style="height: 30%"></div>
+                        <div class="flex-1 bg-purple-500 rounded-t-sm" style="height: 80%"></div>
+                        <div class="flex-1 bg-purple-500 rounded-t-sm" style="height: 50%"></div>
+                    </div>
+                </div>
+
+                <div class="glass-card md:col-span-2 relative overflow-hidden flex flex-col md:flex-row items-center rounded-2xl">
+                    <div class="p-8 flex-1">
+                        <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center mb-4 text-pink-400">
+                            <i data-lucide="layout-grid" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Kanban Workflow</h3>
+                        <p class="text-slate-400">Drag-and-drop campaign management. From "Outreach" to "Content Live" in one view.</p>
+                    </div>
+                    <div class="w-full md:w-1/2 h-full bg-slate-900/50 border-l border-white/5 p-4 relative min-h-[200px]">
+                        <div class="space-y-3 mt-4 opacity-75">
+                            <div class="bg-slate-800 p-3 rounded border border-white/5 text-xs text-white">Review Draft Video</div>
+                            <div class="bg-slate-800 p-3 rounded border border-white/5 text-xs text-white">Approve Contract</div>
+                            <div class="bg-indigo-600/20 border border-indigo-500/50 p-3 rounded text-xs text-indigo-200">Payment Released</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-slate-950 relative">
+        <div class="container px-6 mx-auto">
+            <div class="relative max-w-4xl mx-auto text-center fade-in-up">
+                <div class="absolute -top-12 left-1/2 -translate-x-1/2 text-8xl text-indigo-500/20 font-serif">"</div>
+                <h3 class="text-3xl md:text-5xl font-medium text-white leading-tight mb-8 relative z-10">
+                    Monofluence transformed how we handle influencer payouts. We went from spending 10 hours a week on spreadsheets to just 10 minutes.
+                </h3>
+                <div class="flex items-center justify-center gap-4">
+                    <div class="w-12 h-12 bg-slate-800 rounded-full overflow-hidden">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=CEO" alt="CEO">
+                    </div>
+                    <div class="text-left">
+                        <div class="text-white font-bold">Alex Rivera</div>
+                        <div class="text-indigo-400 text-sm">CMO at TechFlow</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 pt-20 border-t border-white/5">
+        <div class="container px-6 mx-auto">
+            <div class="bg-gradient-to-r from-indigo-900/50 to-purple-900/50 rounded-3xl p-12 text-center border border-white/10 relative overflow-hidden">
+                <div class="absolute inset-0 bg-noise"></div>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 relative z-10">Ready to start your campaign?</h2>
+                <p class="text-slate-300 text-lg mb-8 max-w-2xl mx-auto relative z-10">Join thousands of brands and creators moving the economy forward.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
+                    <button class="bg-white text-slate-950 hover:bg-slate-200 h-14 px-8 rounded-full text-lg font-bold transition-colors">Get Started Free</button>
+                    <button class="border border-white/20 text-white hover:bg-white/10 h-14 px-8 rounded-full text-lg font-bold transition-colors">Book Demo</button>
+                </div>
+            </div>
+
+            <div class="py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <i data-lucide="zap" class="h-5 w-5 text-indigo-500"></i>
+                        <span class="font-bold text-white">Monofluence</span>
+                    </div>
+                    <p class="text-slate-500">© 2026 Enbiit Inc.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Platform</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Creators</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Brands</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Company</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">About</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Privacy</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Initialize Icons
+        // 1. Initialize Icons
         lucide.createIcons();
 
-        // Mobile Menu Logic
-        const menuBtn = document.getElementById('menu-btn');
+        // 2. Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-slate-950/80', 'backdrop-blur-md', 'border-b', 'border-white/10');
+                navbar.classList.remove('py-5');
+                navbar.classList.add('py-3');
+            } else {
+                navbar.classList.remove('bg-slate-950/80', 'backdrop-blur-md', 'border-b', 'border-white/10');
+                navbar.classList.remove('py-3');
+                navbar.classList.add('py-5');
+            }
+        });
+
+        // 3. Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+        // 4. Parallax Scroll Effect for Hero Cards
+        const card1 = document.getElementById('card-1');
+        const card2 = document.getElementById('card-2');
+        
+        window.addEventListener('scroll', () => {
+            // Only animate if screen is large enough
+            if (window.innerWidth > 1024) {
+                const scrolled = window.scrollY;
+                // Move cards at different speeds
+                if(card1) card1.style.transform = `translateY(${scrolled * 0.2}px)`;
+                if(card2) card2.style.transform = `translateY(${scrolled * -0.15}px)`;
+            }
         });
+
+        // 5. Fade In Elements on Scroll using Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach((el) => {
+            observer.observe(el);
+        });
+        
+        // Trigger hero fade-in immediately
+        setTimeout(() => {
+            document.getElementById('hero-text').classList.add('visible');
+        }, 100);
+
     </script>
 </body>
 </html>
